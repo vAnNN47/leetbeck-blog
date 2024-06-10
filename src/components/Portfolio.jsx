@@ -19,7 +19,7 @@ export const Portfolio = () => {
     return (
         <div>
             <div>
-                <h2>Leetbeck Portfolio</h2>
+                <h2>Leetbeck Portfolio - test</h2>
                 <ResponsiveImage
                     src="/images/fibo.webp"
                     alt="fibo art style"
