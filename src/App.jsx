@@ -5,30 +5,22 @@ import { useEffect, useState } from 'react';
 
 function App() {
 
-  const [isLoading, setIsLoading] = useState(true);
+  const [isPageLoaded, setIsPageLoaded] = useState(false);
 
   useEffect(() => {
-    // Set up an event listener for the window load event
     const handleLoad = () => {
-      console.log('Window loaded');
-      setIsLoading(false);
+      setIsPageLoaded(true);
     };
 
+    // Add event listener for window load
     window.addEventListener('load', handleLoad);
-    console.log(isLoading);
-    // Cleanup the event listener when the component unmounts
-    return () => {
-      window.removeEventListener('load', handleLoad);
-      console.log(isLoading);
-    };
+
+    // Cleanup event listener on component unmount
+    return () => window.removeEventListener('load', handleLoad);;
   }, []);
 
-  useEffect(() => {
-    console.log('isLoading:', isLoading);
-  }, [isLoading]);
-
-  if (isLoading) {
-    return <Loader />
+  if (!isPageLoaded) {
+    return <Loader />;
   }
 
   return (
