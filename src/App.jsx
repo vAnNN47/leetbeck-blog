@@ -1,11 +1,9 @@
 import './App.css';
 import { Portfolio } from './components/Portfolio';
 import { Loader } from './components/Loader';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-// c7827ca24996e9a65f002343a44bb56a788493d9
-
-const App = () => {
+function App() {
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -16,7 +14,6 @@ const App = () => {
     };
 
     window.addEventListener('load', handleLoad);
-
     // Cleanup the event listener when the component unmounts
     return () => {
       window.removeEventListener('load', handleLoad);
@@ -24,7 +21,7 @@ const App = () => {
   }, []);
 
   if (isLoading) {
-    return <Loader />;
+    return <Loader />
   }
 
   return (
