@@ -1,10 +1,21 @@
-import styled from "styled-components";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { imageData } from './imageData';
+
+const ImageContainer = styled.div`
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
+  cursor: ${(props) => (props.$isNSFW ? 'pointer' : 'default')};
+`;
 
 const ResponsiveImage = styled.img`
   width: 100%;
   max-width: 600px;
   height: auto;
   border: 1px solid black;
+  filter: ${(props) => (props.$isBlurred ? 'blur(10px)' : 'none')};
+  transition: filter 0.3s;
 
   @media (min-width: 768px) {
     width: 80%;
@@ -15,81 +26,49 @@ const ResponsiveImage = styled.img`
   }
 `;
 
+const NSFWWarning = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  border-radius: 5px;
+  display: ${(props) => (props.$isBlurred ? 'block' : 'none')};
+`;
+
 export const Portfolio = () => {
+  const [blurred, setBlurred] = useState({});
+
+  const handleImageClick = (index) => {
+    setBlurred((prevState) => ({
+      ...prevState,
+      [index]: !prevState[index],
+    }));
+  };
+
   return (
     <div>
-      <div>
-        <h2>Leetbeck Portfolio</h2>
-        <ResponsiveImage
-          src="/images/fibo.webp"
-          alt="fibo art style" />
-        <p>Trying some fibo style art</p>
-        <hr />
-      </div>
-      <div>
-        <ResponsiveImage
-          src="/images/t-shirt-style.webp"
-          alt="t shirt style"
-        />
-        <p>Some t-shirt style idea</p>
-        <hr />
-      </div>
-      <div>
-        <ResponsiveImage
-          src="/images/duffy-girl.webp"
-          alt="duffy girl"
-        />
-        <p>duffy duck female</p>
-        <hr />
-      </div>
-      <div>
-        <ResponsiveImage
-          src="/images/nice-figure.webp"
-          alt="nice figure"
-        />
-        <p>nice figure</p>
-        <hr />
-      </div>
-      <div>
-        <ResponsiveImage
-          src="/images/one-of-the-firsts.webp"
-          alt="one-of-the-firsts"
-        />
-        <p>one-of-the-firsts</p>
-        <hr />
-      </div>
-      <div>
-        <ResponsiveImage
-          src="/images/sketch-study.webp"
-          alt="sketch-study"
-        />
-        <p>sketch-study</p>
-        <hr />
-      </div>
-      <div>
-        <ResponsiveImage
-          src="/images/sketch3.webp"
-          alt="some sketch3"
-        />
-        <p>Some sketch</p>
-        <hr />
-      </div>
-      <div>
-        <ResponsiveImage
-          src="/images/skull-study.webp"
-          alt="skull-study"
-        />
-        <p>Skull study</p>
-        <hr />
-      </div>
-      <div>
-        <ResponsiveImage
-          src="/images/some-concept.webp"
-          alt="some-concept"
-        />
-        <p>Some concept art</p>
-        <hr />
-      </div>
+      <h2>Leetbeck Portfolio</h2>
+      {imageData.map((image, index) => (
+        <ImageContainer
+          key={index}
+          onClick={() => handleImageClick(index)}
+          $isNSFW={image.nsfw}
+        >
+          <ResponsiveImage
+            src={image.src}
+            alt={image.alt}
+            $isBlurred={image.nsfw && !blurred[index]}
+          />
+          {image.nsfw && (
+            <NSFWWarning $isBlurred={!blurred[index]}>NSFW Content - click to reveal</NSFWWarning>
+          )}
+          <p>{image.alt}</p>
+          <hr />
+        </ImageContainer>
+      ))}
     </div>
   );
 };

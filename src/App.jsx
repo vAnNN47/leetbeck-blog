@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import { Portfolio } from "./components/Portfolio";
 import { Loader } from "./components/Loader";
-import { useImagesLoaded } from "./components/useImagesLoaded";
+import { useImagesLoaded } from "./hooks/useImagesLoaded";
 
 function App() {
   const imagePaths = [
