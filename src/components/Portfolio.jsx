@@ -12,7 +12,6 @@ const ImageContainer = styled.div`
 
 const ResponsiveImage = styled.img`
   width: 100%;
-  max-width: 600px;
   height: auto;
   border: 1px solid black;
   filter: ${(props) => (props.$isBlurred ? 'blur(10px)' : 'none')};

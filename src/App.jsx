@@ -3,6 +3,10 @@ import "./App.css";
 import { Portfolio } from "./components/Portfolio";
 import { Loader } from "./components/Loader";
 import { useImagesLoaded } from "./hooks/useImagesLoaded";
+import { Routes, Route } from "react-router-dom";
+import { Layout } from "./components/Layout";
+import { NoMatch } from './components/NoMatch';
+import { Blog } from "./components/Blog";
 
 function App() {
   const imagePaths = [
@@ -20,7 +24,13 @@ function App() {
 
   return (
     <div className="App">
-      {imagesLoaded ? <Portfolio /> : <Loader />}
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={imagesLoaded ? <Portfolio /> : <Loader />} />
+          <Route path="blog" element={<Blog />} />
+          <Route path="*" element={<NoMatch />} />
+        </Route>
+      </Routes>
     </div>
   );
 }
