@@ -7,21 +7,13 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const handleLoad = () => {
+    // Simulate loading time
+    const timer = setTimeout(() => {
       setIsLoading(false);
-    };
+    }, 2000); // Adjust the time as needed
 
-    if (document.readyState === "complete") {
-      // Document is already loaded
-      handleLoad();
-    } else {
-      window.addEventListener("load", handleLoad);
-    }
-
-    // Cleanup event listener on component unmount
-    return () => {
-      window.removeEventListener("load", handleLoad);
-    };
+    // Cleanup timer on component unmount
+    return () => clearTimeout(timer);
   }, []);
 
   return <div className="App">{isLoading ? <Loader /> : <Portfolio />}</div>;
