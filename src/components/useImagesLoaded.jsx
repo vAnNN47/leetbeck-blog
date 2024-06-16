@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useImagesLoaded = (imagePaths) => {
+export const useImagesLoaded = (imagePaths) => {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -19,5 +19,3 @@ const useImagesLoaded = (imagePaths) => {
 
   return loaded;
 };
-
-export default useImagesLoaded;
