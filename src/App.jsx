@@ -7,12 +7,16 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Set the isLoading state to false when the window is fully loaded
     const handleLoad = () => {
       setIsLoading(false);
     };
 
-    window.addEventListener("load", handleLoad);
+    if (document.readyState === "complete") {
+      // Document is already loaded
+      handleLoad();
+    } else {
+      window.addEventListener("load", handleLoad);
+    }
 
     // Cleanup event listener on component unmount
     return () => {
