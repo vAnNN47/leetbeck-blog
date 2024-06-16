@@ -44,14 +44,6 @@ Error generating stack: `+o.message+`
   margin-bottom: 20px;
   cursor: ${e=>e.$isNSFW?"pointer":"default"};
   outline: none;
-
-  &:focus {
-    outline: none;
-  }
-
-  @media (hover: none) {
-    -webkit-tap-highlight-color: transparent;
-  }
 `,Lm=mo.img`
   width: 100%;
   max-width: 600px;
@@ -81,4 +73,4 @@ Error generating stack: `+o.message+`
   padding: 10px;
   border-radius: 5px;
   display: ${e=>e.$isBlurred?"block":"none"};
-`,Im=()=>{const[e,t]=Nt.useState({}),n=r=>{t(l=>({...l,[r]:!l[r]}))};return pe.jsxs("div",{children:[pe.jsx("h2",{children:"Leetbeck Portfolio"}),$m.map((r,l)=>pe.jsxs(Tm,{onClick:()=>n(l),$isNSFW:r.nsfw,tabIndex:0,children:[pe.jsx(Lm,{src:r.src,alt:r.alt,$isBlurred:r.nsfw&&!e[l]}),r.nsfw&&pe.jsx(Rm,{$isBlurred:!e[l],children:"NSFW"}),pe.jsx("p",{children:r.alt}),pe.jsx("hr",{})]},l))]})},Om=()=>pe.jsx("div",{className:"loader",children:pe.jsx("img",{className:"spinner",src:"/images/loader.webp",alt:"Loading..."})}),Dm=e=>{const[t,n]=Nt.useState(!1);return Nt.useEffect(()=>{let r=0;const l=e.length,o=()=>{r+=1,console.log(`Image loaded: ${r}/${l}`),r===l&&n(!0)},i=()=>{r+=1,console.log(`Image failed to load: ${r}/${l}`),r===l&&n(!0)};e.forEach(u=>{const s=new Image;s.src=u,s.onload=o,s.onerror=i})},[e]),t};function jm(){const t=Dm(["/images/t-shirt-style.webp","/images/fibo.webp","/images/duffy-girl.webp","/images/nice-figure.webp","/images/one-of-the-firsts.webp","/images/sketch-study.webp","/images/skull-study.webp","/images/some-concept.webp","/images/sketch3.webp"]);return pe.jsx("div",{className:"App",children:t?pe.jsx(Im,{}):pe.jsx(Om,{})})}Go.createRoot(document.getElementById("root")).render(pe.jsx(Cn.StrictMode,{children:pe.jsx(jm,{})}));
+`,Im=()=>{const[e,t]=Nt.useState({}),n=r=>{t(l=>({...l,[r]:!l[r]}))};return pe.jsxs("div",{children:[pe.jsx("h2",{children:"Leetbeck Portfolio"}),$m.map((r,l)=>pe.jsxs(Tm,{onClick:()=>n(l),$isNSFW:r.nsfw,className:"no-highlight",tabIndex:0,children:[pe.jsx(Lm,{src:r.src,alt:r.alt,$isBlurred:r.nsfw&&!e[l],className:"no-highlight"}),r.nsfw&&pe.jsx(Rm,{$isBlurred:!e[l],children:"NSFW"}),pe.jsx("p",{children:r.alt}),pe.jsx("hr",{})]},l))]})},Om=()=>pe.jsx("div",{className:"loader",children:pe.jsx("img",{className:"spinner",src:"/images/loader.webp",alt:"Loading..."})}),Dm=e=>{const[t,n]=Nt.useState(!1);return Nt.useEffect(()=>{let r=0;const l=e.length,o=()=>{r+=1,console.log(`Image loaded: ${r}/${l}`),r===l&&n(!0)},i=()=>{r+=1,console.log(`Image failed to load: ${r}/${l}`),r===l&&n(!0)};e.forEach(u=>{const s=new Image;s.src=u,s.onload=o,s.onerror=i})},[e]),t};function jm(){const t=Dm(["/images/t-shirt-style.webp","/images/fibo.webp","/images/duffy-girl.webp","/images/nice-figure.webp","/images/one-of-the-firsts.webp","/images/sketch-study.webp","/images/skull-study.webp","/images/some-concept.webp","/images/sketch3.webp"]);return pe.jsx("div",{className:"App",children:t?pe.jsx(Im,{}):pe.jsx(Om,{})})}Go.createRoot(document.getElementById("root")).render(pe.jsx(Cn.StrictMode,{children:pe.jsx(jm,{})}));
