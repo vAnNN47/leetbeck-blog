@@ -7,6 +7,15 @@ const ImageContainer = styled.div`
   display: inline-block;
   margin-bottom: 20px;
   cursor: ${(props) => (props.$isNSFW ? 'pointer' : 'default')};
+  outline: none;
+
+  &:focus {
+    outline: none;
+  }
+
+  @media (hover: none) {
+    -webkit-tap-highlight-color: transparent;
+  }
 `;
 
 const ResponsiveImage = styled.img`
@@ -23,6 +32,10 @@ const ResponsiveImage = styled.img`
 
   @media (min-width: 1024px) {
     width: 60%;
+  }
+
+  &:focus {
+    outline: none;
   }
 `;
 
@@ -56,6 +69,7 @@ export const Portfolio = () => {
           key={index}
           onClick={() => handleImageClick(index)}
           $isNSFW={image.nsfw}
+          tabIndex={0} // Adding tabIndex to make it focusable
         >
           <ResponsiveImage
             src={image.src}
@@ -63,7 +77,7 @@ export const Portfolio = () => {
             $isBlurred={image.nsfw && !blurred[index]}
           />
           {image.nsfw && (
-            <NSFWWarning $isBlurred={!blurred[index]}>NSFW Content - click to reveal</NSFWWarning>
+            <NSFWWarning $isBlurred={!blurred[index]}>NSFW</NSFWWarning>
           )}
           <p>{image.alt}</p>
           <hr />
