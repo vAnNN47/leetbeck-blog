@@ -5,15 +5,29 @@ export const useImagesLoaded = (imagePaths) => {
 
   useEffect(() => {
     let loadedCount = 0;
+    const totalImages = imagePaths.length;
+
+    const handleLoad = () => {
+      loadedCount += 1;
+      console.log(`Image loaded: ${loadedCount}/${totalImages}`);
+      if (loadedCount === totalImages) {
+        setLoaded(true);
+      }
+    };
+
+    const handleError = () => {
+      loadedCount += 1;
+      console.log(`Image failed to load: ${loadedCount}/${totalImages}`);
+      if (loadedCount === totalImages) {
+        setLoaded(true);
+      }
+    };
+
     imagePaths.forEach((src) => {
       const img = new Image();
       img.src = src;
-      img.onload = () => {
-        loadedCount += 1;
-        if (loadedCount === imagePaths.length) {
-          setLoaded(true);
-        }
-      };
+      img.onload = handleLoad;
+      img.onerror = handleError;
     });
   }, [imagePaths]);
 
