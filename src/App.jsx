@@ -22,6 +22,9 @@ function App() {
     "/images/skull-study.webp",
     "/images/some-concept.webp",
     "/images/sketch3.webp",
+    "/images/some-style.webp",
+    "/images/stick-the-plan-2.webp",
+    "/images/lets-go.webp",
   ];
   const imagesLoaded = useImagesLoaded(imagePaths);
 

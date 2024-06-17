@@ -6,9 +6,9 @@
 }
 
 .spinner {
-    width: 100px; /* Adjust the size as needed */
+    max-width: 320px; /* Adjust the size as needed */
     height: auto;
-    animation: spin 2s linear infinite;
+    animation: spin 2s ease-in-out infinite;
 }
 
 @keyframes spin {
