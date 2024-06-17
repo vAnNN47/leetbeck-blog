@@ -7,6 +7,9 @@ import { Routes, Route } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { NoMatch } from './components/NoMatch';
 import { Blog } from "./components/Blog";
+import { BlogPost } from './components/BlogPost';
+import { CreatePost } from "./components/CreatePost";
+import { PostsList } from './components/PostsList'
 
 function App() {
   const imagePaths = [
@@ -27,7 +30,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={imagesLoaded ? <Portfolio /> : <Loader />} />
-          <Route path="blog" element={<Blog />} />
+          <Route path="blog" element={<PostsList />} />
+          <Route path="blog/:slug" element={<BlogPost />} />
+          <Route path="create" element={<CreatePost />} />
           <Route path="*" element={<NoMatch />} />
         </Route>
       </Routes>

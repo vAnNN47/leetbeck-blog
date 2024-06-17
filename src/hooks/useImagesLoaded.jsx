@@ -9,7 +9,7 @@ export const useImagesLoaded = (imagePaths) => {
 
     const handleLoad = () => {
       loadedCount += 1;
-      console.log(`Image loaded: ${loadedCount}/${totalImages}`);
+      // console.log(`Image loaded: ${loadedCount}/${totalImages}`);
       if (loadedCount === totalImages) {
         setLoaded(true);
       }
