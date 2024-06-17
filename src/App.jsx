@@ -25,11 +25,15 @@ function App() {
   ];
   const imagesLoaded = useImagesLoaded(imagePaths);
 
+  if (!imagesLoaded) {
+    return <Loader />;
+  }
+
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={imagesLoaded ? <Portfolio /> : <Loader />} />
+          <Route index element={<Portfolio />} />
           <Route path="blog" element={<PostsList />} />
           <Route path="blog/:slug" element={<BlogPost />} />
           <Route path="create" element={<CreatePost />} />
